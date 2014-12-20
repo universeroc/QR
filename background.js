@@ -1,4 +1,24 @@
 
+chrome.tabs.onCreated.addListener(function(tabId) {
+  lastTabId = tabId;
+  chrome.pageAction.show(lastTabId);
+
+  chrome.pageAction.setPopup({
+    tabId: lastTabId,
+    popup: 'qr.html'
+  });
+});
+
+chrome.tabs.onUpdated.addListener(function(tabId) {
+  lastTabId = tabId;
+  chrome.pageAction.show(lastTabId);
+
+  chrome.pageAction.setPopup({
+    tabId: lastTabId,
+    popup: 'qr.html'
+  });
+});
+
 chrome.tabs.onSelectionChanged.addListener(function(tabId) {
   lastTabId = tabId;
   chrome.pageAction.show(lastTabId);

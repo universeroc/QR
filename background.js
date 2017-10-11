@@ -1,40 +1,15 @@
-
-chrome.tabs.onCreated.addListener(function(tabId) {
-  lastTabId = tabId;
-  chrome.pageAction.show(lastTabId);
-
+function setUpQRHandler(tabId) {
+  chrome.pageAction.show(tabId);
   chrome.pageAction.setPopup({
-    tabId: lastTabId,
+    tabId: tabId,
     popup: 'qr.html'
   });
-});
+}
 
-chrome.tabs.onUpdated.addListener(function(tabId) {
-  lastTabId = tabId;
-  chrome.pageAction.show(lastTabId);
-
-  chrome.pageAction.setPopup({
-    tabId: lastTabId,
-    popup: 'qr.html'
-  });
-});
-
-chrome.tabs.onSelectionChanged.addListener(function(tabId) {
-  lastTabId = tabId;
-  chrome.pageAction.show(lastTabId);
-
-  chrome.pageAction.setPopup({
-    tabId: lastTabId,
-    popup: 'qr.html'
-  });
-});
-
+chrome.tabs.onCreated.addListener(setUpQRHandler);
+chrome.tabs.onUpdated.addListener(setUpQRHandler);
+chrome.tabs.onSelectionChanged.addListener(setUpQRHandler);
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
   lastTabId = tabs[0].id;
-  chrome.pageAction.show(lastTabId);
-
-  chrome.pageAction.setPopup({
-    tabId: lastTabId,
-    popup: 'qr.html'
-  });
+  setUpQRHandler(lastTabId);
 });

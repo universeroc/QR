@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "QRCode",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "QRCode one click generator for mobile scanning",
+    "description":"The description of the application, displayed in the web store."
+  }
+}
